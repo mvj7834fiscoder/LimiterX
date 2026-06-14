@@ -1,0 +1,48 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.11'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.learn'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    runtimeOnly 'com.mysql:mysql-connector-j:9.1.0'
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'com.bucket4j:bucket4j_jdk17-core:8.11.0'
+
+    // 🔴 CHANGE THIS LINE: Pulls in the explicit Lettuce extensions and builders
+    implementation 'com.bucket4j:bucket4j_jdk17-lettuce:8.11.0'
+
+    // 3. Underlying Redis client driver
+    implementation 'io.lettuce:lettuce-core:6.3.2.RELEASE'
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
